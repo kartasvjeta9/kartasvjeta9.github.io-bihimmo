@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immobilien in Bosnien und Herzegowina</title>
+    <style>
+        /* Osnovne boje i fontovi */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* Navigacija */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            margin-left: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-links button:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links .btn-contact {
+            background: var(--secondary-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        /* Glavni kontejner */
+        main {
+            margin-top: 70px;
+            min-height: 80vh;
+        }
+
+        /* Sekcije (Prikazuju se dinamično) */
+        .view-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 1. POČETNA STRANICA (HOME) */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 800px; }
+        
+        .btn-primary {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn-primary:hover { background: #c0392b; }
+        .btn-primary:disabled { background: #555; cursor: not-allowed; }
+
+        /* 2. LISTA ZEMLJIŠTA (LISTINGS) */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .property-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .property-specs {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn-outline {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .property-card:hover .btn-outline {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* 3. DETALJI ZEMLJIŠTA (DETAIL VIEW) */
+        .detail-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .detail-gallery {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .main-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #eee;
+        }
+
+        .main-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .gallery-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .gallery-btn.prev { left: 10px; }
+        .gallery-btn.next { right: 10px; }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--secondary-color);
+        }
+
+        .thumbnail:hover { opacity: 1; }
+
+        .detail-content {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .detail-price {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        /* Form */
+        .contact-box {
+            margin-top: 30px;
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .contact-box input, .contact-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .contact-box button {
+            width: 100%;
+        }
+        
+        /* Status poruka (uspjeh/greška) */
+        .form-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+        .form-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        .form-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('home')">
+                <svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 25 L20 10 L35 25 V35 H5 Z" fill="#ffffff"/>
+                    <path d="M20 10 L20 0 L30 0 V10" fill="#e74c3c"/>
+                    <text x="45" y="28" font-family="Segoe UI, Tahoma, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">Immo</text>
+                    <text x="110" y="28" font-family="Segoe UI, Tahoma, sans-serif" font-size="24" font-weight="bold" fill="#e74c3c">BiH</text>
+                </svg>
+            </div>
+            <div class="nav-links">
+                <button onclick="navigateTo('home')">Startseite</button>
+                <button onclick="navigateTo('listings')">Alle Grundstücke</button>
+                <button class="btn-contact" onclick="document.getElementById('footer').scrollIntoView();">Kontakt</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="view-home" class="view-section active">
+            <div class="hero">
+                <h1>Investieren in Bosnien und Herzegowina</h1>
+                <p>Entdecken Sie traumhafte Baugrundstücke in erstklassigen Lagen. Perfekt für Ihr Eigenheim, als Feriendomizil oder als sichere Kapitalanlage.</p>
+                <button class="btn-primary" onclick="navigateTo('listings')">Grundstücke ansehen</button>
+            </div>
+            
+            <div class="container">
+                <h2 class="section-title">Warum in BiH investieren?</h2>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; text-align: center;">
+                    <div style="flex:1; min-width: 250px; background: white; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: var(--secondary-color);">💰 Attraktive Preise</h3>
+                        <p>Im Vergleich zum restlichen Europa bieten wir unschlagbare Quadratmeterpreise für erstklassiges Bauland.</p>
+                    </div>
+                    <div style="flex:1; min-width: 250px; background: white; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: var(--secondary-color);">🌲 Wunderschöne Natur</h3>
+                        <p>Berge, Flüsse und Seen. Bosnien bietet eine unberührte Natur, die ihresgleichen sucht.</p>
+                    </div>
+                    <div style="flex:1; min-width: 250px; background: white; padding: 20px; border-radius: 8px;">
+                        <h3 style="color: var(--secondary-color);">📜 100% Sicher</h3>
+                        <p>Alle unsere Grundstücke haben geprüfte Papiere (1/1 Besitz) und sind bereit für die Bebauung.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-listings" class="view-section">
+            <div class="container">
+                <h2 class="section-title">Unsere aktuellen Angebote</h2>
+                <div class="listings-grid" id="listings-container">
+                    </div>
+            </div>
+        </section>
+
+        <section id="view-detail" class="view-section">
+            <div class="container">
+                <button class="back-btn" onclick="navigateTo('listings')">← Zurück zur Übersicht</button>
+                <h2 class="section-title" id="detail-title">Titel</h2>
+                
+                <div class="detail-wrapper">
+                    
+                    <div class="detail-gallery">
+                        <div class="gallery-container">
+                            <div class="main-img-wrapper">
+                                <button class="gallery-btn prev" onclick="changeImage(-1)">&#10094;</button>
+                                <img id="detail-main-image" src="" alt="Grundstück">
+                                <button class="gallery-btn next" onclick="changeImage(1)">&#10095;</button>
+                            </div>
+                            <div class="thumbnails" id="detail-thumbnails">
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-content">
+                        <p style="color: #7f8c8d; font-size: 1.1rem;">📍 <span id="detail-location">Ort</span></p>
+                        <div class="detail-price" id="detail-price">0 €</div>
+                        <p><strong>Größe:</strong> <span id="detail-size">0</span> m²</p>
+                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                        
+                        <h3>Beschreibung</h3>
+                        <div id="detail-desc" style="margin-top: 10px; line-height: 1.8;">Beschreibungstext hier...</div>
+                        
+                        <h3 style="margin-top: 20px; display: none;">Highlights</h3>
+                        <ul class="features-list" id="detail-features" style="display: none;">
+                            </ul>
+
+                        <div class="contact-box">
+                            <h3>Interesse an diesem Grundstück?</h3>
+                            <form id="contact-form">
+                                <input type="hidden" name="access_key" value="b43f75b8-a605-43f9-87a4-9ba98ac348ca">
+                                
+                                <input type="hidden" id="form-subject" name="subject" value="Novi upit sa web stranice">
+                                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                                
+                                <input type="text" name="Name" placeholder="Ihr Name" required>
+                                <input type="email" name="Email" placeholder="Ihre E-Mail" required>
+                                <textarea name="Nachricht" placeholder="Ich hätte gerne weitere Informationen..." required rows="4"></textarea>
+                                <button type="submit" class="btn-primary" id="form-submit-btn">Anfrage senden</button>
+                            </form>
+                            <div id="form-result" class="form-status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <h3>Kontaktieren Sie uns</h3>
+            <p>E-Mail: infobihimmo@gmail.com | Telefon: +49 123 456 789</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #aaa;">&copy; 2026 Immobilien BiH. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // OVDJE UNOSIŠ SVOJA ZEMLJIŠTA
+        const properties = [
+            {
+                id: 1,
+                title: "Grundstück in Bosnien und Herzegowina",
+                location: "Umgebung von Bosanski Petrovac",
+                price: "32.000",
+                size: "27.500",
+                images: [
+                    "https://i.imgur.com/eLXUrgP.png",
+                    "https://i.imgur.com/0HbcbVl.jpeg",
+                    "https://i.imgur.com/8o0P284.png"
+                ],
+                description: `<strong>EXKLUSIVES GRUNDSTÜCK MIT HOHEM SOLARPOTENZIAL — BOSANSKI PETROVAC</strong><br><br>
+Zum Verkauf steht ein großes Grundstück mit einer Fläche von 2,75 Hektar in hervorragender Lage zwischen Stadt und Dorf in der Umgebung von Bosanski Petrovac.<br><br>
+<strong>Die Lage bietet eine seltene Kombination aus:</strong><br>
+- sauberer Luft<br>
+- Ruhe und Privatsphäre<br>
+- guter Verkehrsanbindung<br>
+- sehr vielen Sonnentagen im Jahr<br><br>
+<strong>Das Grundstück befindet sich:</strong><br>
+- ca. 3 km von der Stadt entfernt<br>
+- ca. 1 km von der Hauptstraße entfernt<br>
+- in der Nähe der Grenze zu Kroatien und der EU<br><br>
+<strong>Hauptvorteile:</strong><br>
+✅ Sehr saubere Luft (AQI ~38 – gute Luftqualität)<br>
+✅ Eine der sonnigsten Regionen des Balkans<br>
+✅ Großes Potenzial für Solarprojekte<br>
+✅ Ideal für Eco / Off-Grid Lifestyle<br>
+✅ Geeignet für Wochenendhaus, Landwirtschaft oder privaten Rückzugsort<br>
+✅ Ruhige Lage ohne Stadtlärm<br>
+✅ Gute Erreichbarkeit und Nähe zur Infrastruktur<br><br>
+Das Grundstück ist im Kataster eingetragen und verfügt über ordnungsgemäße Dokumentation.<br><br>
+<strong>Ideal für:</strong><br>
+- private Investoren<br>
+- Solarprojekte<br>
+- Wochenendgrundstück<br>
+- biologische Landwirtschaft<br>
+- Menschen, die ein ruhiges Leben in der Natur suchen<br><br>
+Seriöse Käufer können das Grundstück mit einer Anzahlung reservieren, während die administrativen Verfahren abgeschlossen werden.<br><br>
+Falls Sie an kleineren oder größeren Grundstücken interessiert sind – mit Wald, Wiese oder einer Kombination davon – haben wir ebenfalls passende Angebote verfügbar.<br><br>
+Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte eine private Nachricht.`,
+                features: ["Baugenehmigung vorhanden", "Strom- und Wasseranschluss am Grundstück", "Asphaltierte Zufahrtsstraße", "1/1 Eigentum (saubere Papiere)"]
+            },
+            {
+                id: 2,
+                title: "Grundstück 418",
+                location: "Bosanski Petrovac",
+                price: "60.000",
+                size: "1.800",
+                images: [
+                    "https://i.imgur.com/i5AtA0w.jpeg",
+                    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                ],
+                description: "Einzigartige Gelegenheit! Grundstück in unmittelbarer Nähe zum kristallklaren Fluss Una. Perfekt für den Bau eines Ferienhauses oder für touristische Vermietung.",
+                features: ["https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA", "Touristisch sehr attraktive Zone", "Ruhige Nachbarschaft", "Baugenehmigung möglich"]
+            },
+            {
+               id: 3,
+                title: "Großes Landwirtschaftliches Grundstück",
+                location: "Mostar (Umgebung)",
+                price: "35.000",
+                size: "5.000",
+                images: [
+                    "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                ],
+                description: "Großes Areal im sonnigen Süden von Bosnien und Herzegowina. Sehr fruchtbarer Boden, ideal für Weinanbau oder als große Investitionsfläche für die Zukunft.",
+                features: ["Sehr fruchtbarer Boden", "Viel Sonnenschein (Klima ähnlich wie Dalmatien)", "Nahe der Autobahnauffahrt", "Strom in 50m Entfernung"]
+            }
+        ];
+
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+
+        function navigateTo(viewId, propertyId = null) {
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            document.getElementById('view-' + viewId).classList.add('active');
+            window.scrollTo(0, 0);
+
+            if (viewId === 'detail' && propertyId !== null) {
+                loadPropertyDetails(propertyId);
+            }
+        }
+
+        function renderListings() {
+            const container = document.getElementById('listings-container');
+            container.innerHTML = ''; 
+
+            properties.forEach(prop => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.onclick = () => navigateTo('detail', prop.id);
+
+                const mainImage = prop.images && prop.images.length > 0 ? prop.images[0] : '';
+
+                card.innerHTML = `
+                    <img src="${mainImage}" alt="${prop.title}" class="property-img">
+                    <div class="property-info">
+                        <div class="property-specs">
+                            <span>📍 ${prop.location}</span>
+                            <span>📏 ${prop.size} m²</span>
+                        </div>
+                        <h3 class="property-title">${prop.title}</h3>
+                        <div class="property-price">${prop.price} €</div>
+                        <button class="btn-outline">Details ansehen</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function loadPropertyDetails(id) {
+            const prop = properties.find(p => p.id === id);
+            if (!prop) return;
+
+            document.getElementById('detail-title').innerText = prop.title;
+            document.getElementById('detail-location').innerText = prop.location;
+            document.getElementById('detail-price').innerText = prop.price + ' €';
+            document.getElementById('detail-size').innerText = prop.size;
+            document.getElementById('detail-desc').innerHTML = prop.description;
+            
+            document.getElementById('form-subject').value = "Anfrage für: " + prop.title;
+
+            // Sakrij obavijest ako je klijent ranije slao poruku
+            const resultDiv = document.getElementById('form-result');
+            resultDiv.style.display = "none";
+            resultDiv.className = "form-status";
+
+            currentGalleryImages = prop.images || [];
+            currentImageIndex = 0;
+            updateGalleryUI();
+
+            const featuresList = document.getElementById('detail-features');
+            featuresList.innerHTML = '';
+            prop.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.innerText = feature;
+                featuresList.appendChild(li);
+            });
+        }
+
+        function updateGalleryUI() {
+            if (currentGalleryImages.length === 0) return;
+
+            const mainImageEl = document.getElementById('detail-main-image');
+            mainImageEl.src = currentGalleryImages[currentImageIndex];
+
+            const thumbnailsContainer = document.getElementById('detail-thumbnails');
+            thumbnailsContainer.innerHTML = '';
+
+            currentGalleryImages.forEach((imgSrc, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = 'thumbnail' + (index === currentImageIndex ? ' active' : '');
+                
+                thumb.onclick = () => {
+                    currentImageIndex = index;
+                    updateGalleryUI();
+                };
+                
+                thumbnailsContainer.appendChild(thumb);
+            });
+        }
+
+        function changeImage(direction) {
+            if (currentGalleryImages.length <= 1) return; 
+
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentGalleryImages.length - 1;
+            } else if (currentImageIndex >= currentGalleryImages.length) {
+                currentImageIndex = 0;
+            }
+
+            updateGalleryUI();
+        }
+
+        // LOGIKA ZA FORMU BEZ PREBACIVANJA STRANICE
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            const form = e.target;
+            const result = document.getElementById('form-result');
+            const button = document.getElementById('form-submit-btn');
+            
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            button.innerText = "Wird gesendet...";
+            button.disabled = true;
+            result.style.display = "none";
+            result.className = "form-status";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.innerHTML = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
+                    result.classList.add("success");
+                    form.reset(); 
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message || "Fehler beim Senden.";
+                    result.classList.add("error");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = "Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.";
+                result.classList.add("error");
+            })
+            .then(function() {
+                button.innerText = "Anfrage senden";
+                button.disabled = false;
+                
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 5000);
+            });
+        });
+
+        window.onload = () => {
+            renderListings();
+        };
+    </script>
+
+</body>
+</html>
