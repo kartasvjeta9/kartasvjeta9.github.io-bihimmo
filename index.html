@@ -235,6 +235,7 @@
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             background: #eee;
+            cursor: pointer;
         }
 
         .main-img-wrapper img {
@@ -242,6 +243,15 @@
             height: 100%;
             object-fit: cover;
             transition: opacity 0.3s ease-in-out;
+        }
+
+        /* Animacija za promjenu slike */
+        @keyframes gentleFade {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+        .image-fade {
+            animation: gentleFade 0.3s ease-in-out;
         }
 
         .gallery-btn {
@@ -260,6 +270,7 @@
             justify-content: center;
             align-items: center;
             transition: background 0.3s;
+            z-index: 2;
         }
 
         .gallery-btn:hover {
@@ -380,6 +391,44 @@
             display: block;
         }
 
+        /* Lightbox (povećana slika) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border-radius: 4px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 2001;
+        }
+        .lightbox-close:hover {
+            color: var(--secondary-color);
+        }
     </style>
 </head>
 <body>
@@ -446,10 +495,10 @@
                     
                     <div class="detail-gallery">
                         <div class="gallery-container">
-                            <div class="main-img-wrapper">
-                                <button class="gallery-btn prev" onclick="changeImage(-1)">&#10094;</button>
+                            <div class="main-img-wrapper" id="main-img-wrapper" onclick="openLightbox()">
+                                <button class="gallery-btn prev" onclick="event.stopPropagation(); changeImage(-1)">&#10094;</button>
                                 <img id="detail-main-image" src="" alt="Grundstück">
-                                <button class="gallery-btn next" onclick="changeImage(1)">&#10095;</button>
+                                <button class="gallery-btn next" onclick="event.stopPropagation(); changeImage(1)">&#10095;</button>
                             </div>
                             <div class="thumbnails" id="detail-thumbnails">
                                 </div>
@@ -465,8 +514,8 @@
                         <h3>Beschreibung</h3>
                         <div id="detail-desc" style="margin-top: 10px; line-height: 1.8;">Beschreibungstext hier...</div>
                         
-                        <h3 style="margin-top: 20px; display: none;">Highlights</h3>
-                        <ul class="features-list" id="detail-features" style="display: none;">
+                        <h3 style="margin-top: 20px;">Highlights</h3>
+                        <ul class="features-list" id="detail-features">
                             </ul>
 
                         <div class="contact-box">
@@ -497,6 +546,12 @@
             <p style="margin-top: 20px; font-size: 0.9rem; color: #aaa;">&copy; 2026 Immobilien BiH. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="">
+    </div>
 
     <script>
         // OVDJE UNOSIŠ SVOJA ZEMLJIŠTA
@@ -553,15 +608,15 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
                     "https://i.imgur.com/i5AtA0w.jpeg",
                     "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
-                description: "Einzigartige Gelegenheit! Grundstück in unmittelbarer Nähe zum kristallklaren Fluss Una. Perfekt für den Bau eines Ferienhauses oder für touristische Vermietung.",
+                description: "Einzigartige Gelegenheit! Grundstück in unmittelbarer Nähe zum kristallklaren Fluss Una. Perfekt für den Bau eines Ferienhauses oder für touristische Vermietung. Google Maps: https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA",
                 features: ["https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA", "Touristisch sehr attraktive Zone", "Ruhige Nachbarschaft", "Baugenehmigung möglich"]
             },
             {
                id: 3,
-                title: "Großes Landwirtschaftliches Grundstück",
-                location: "Mostar (Umgebung)",
-                price: "35.000",
-                size: "5.000",
+                title: "Grundstück 541",
+                location: "Bosanski Petrovac",
+                price: "12.000",
+                size: "1.402",
                 images: [
                     "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                 ],
@@ -636,18 +691,27 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
 
             const featuresList = document.getElementById('detail-features');
             featuresList.innerHTML = '';
-            prop.features.forEach(feature => {
-                const li = document.createElement('li');
-                li.innerText = feature;
-                featuresList.appendChild(li);
-            });
+            if (prop.features && prop.features.length) {
+                prop.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerText = feature;
+                    featuresList.appendChild(li);
+                });
+            } else {
+                featuresList.innerHTML = '<li>Keine weiteren Angaben</li>';
+            }
         }
 
         function updateGalleryUI() {
             if (currentGalleryImages.length === 0) return;
 
             const mainImageEl = document.getElementById('detail-main-image');
+            // Dodajemo fade animaciju pri promjeni slike
+            mainImageEl.classList.add('image-fade');
             mainImageEl.src = currentGalleryImages[currentImageIndex];
+            mainImageEl.addEventListener('animationend', () => {
+                mainImageEl.classList.remove('image-fade');
+            }, { once: true });
 
             const thumbnailsContainer = document.getElementById('detail-thumbnails');
             thumbnailsContainer.innerHTML = '';
@@ -657,7 +721,8 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
                 thumb.src = imgSrc;
                 thumb.className = 'thumbnail' + (index === currentImageIndex ? ' active' : '');
                 
-                thumb.onclick = () => {
+                thumb.onclick = (e) => {
+                    e.stopPropagation();
                     currentImageIndex = index;
                     updateGalleryUI();
                 };
@@ -678,6 +743,20 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
             }
 
             updateGalleryUI();
+        }
+
+        // Lightbox funkcije
+        function openLightbox() {
+            if (currentGalleryImages.length === 0) return;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = currentGalleryImages[currentImageIndex];
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
         }
 
         // LOGIKA ZA FORMU BEZ PREBACIVANJA STRANICE
@@ -736,6 +815,5 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
             renderListings();
         };
     </script>
-
 </body>
 </html>
