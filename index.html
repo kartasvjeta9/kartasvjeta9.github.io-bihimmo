@@ -4,394 +4,842 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Immobilien in Bosnien und Herzegowina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* Osnovne boje i fontovi */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #e74c3c;
-            --text-color: #333;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
+            --primary: #1a3329;
+            --primary-light: #2a4d3e;
+            --primary-surface: #e8efe9;
+            --accent: #c8852e;
+            --accent-hover: #b07325;
+            --accent-light: #fdf3e4;
+            --text: #1a1a1a;
+            --text-secondary: #5c5c5c;
+            --text-muted: #8a8a8a;
+            --bg: #faf9f6;
+            --bg-warm: #f5f2ec;
+            --surface: #ffffff;
+            --border: #e8e5df;
+            --border-light: #f0ede8;
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.14), 0 4px 16px rgba(0, 0, 0, 0.06);
+            --radius-xs: 6px;
+            --radius-sm: 10px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 9999px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.65;
+            color: var(--text);
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(ellipse at 15% 10%, rgba(26, 51, 41, 0.025) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 30%, rgba(200, 133, 46, 0.02) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 80%, rgba(26, 51, 41, 0.015) 0%, transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
         }
 
-        /* Navigacija */
+        /* ============ HEADER ============ */
         header {
-            background-color: var(--primary-color);
+            background: rgba(26, 51, 41, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             color: white;
-            padding: 1rem 0;
+            padding: 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all var(--transition);
         }
 
         .nav-container {
-            width: 90%;
-            max-width: 1200px;
+            width: 92%;
+            max-width: 1280px;
             margin: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0.85rem 0;
         }
 
         .logo {
             cursor: pointer;
             display: flex;
             align-items: center;
+            gap: 4px;
+            transition: opacity var(--transition);
+        }
+        .logo:hover {
+            opacity: 0.85;
+        }
+        .logo svg {
+            height: 38px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-links button {
             background: none;
             border: none;
-            color: white;
-            font-size: 1rem;
-            margin-left: 20px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.925rem;
+            font-weight: 500;
+            padding: 10px 18px;
             cursor: pointer;
-            transition: color 0.3s;
+            border-radius: var(--radius-full);
+            transition: all var(--transition);
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
         }
 
         .nav-links button:hover {
-            color: var(--secondary-color);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.07);
         }
 
         .nav-links .btn-contact {
-            background: var(--secondary-color);
-            padding: 8px 15px;
-            border-radius: 5px;
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            margin-left: 8px;
+            box-shadow: 0 2px 10px rgba(200, 133, 46, 0.3);
+            transition: all var(--transition);
+        }
+        .nav-links .btn-contact:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 4px 18px rgba(200, 133, 46, 0.4);
+            transform: translateY(-1px);
         }
 
-        /* Glavni kontejner */
+        /* ============ MAIN ============ */
         main {
-            margin-top: 70px;
+            margin-top: 0;
             min-height: 80vh;
         }
 
-        /* Sekcije (Prikazuju se dinamično) */
         .view-section {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeSlideIn 0.45s ease-out;
         }
-
         .view-section.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* 1. POČETNA STRANICA (HOME) */
+        /* ============ HERO ============ */
         .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            min-height: 92vh;
+            background: linear-gradient(180deg,
+                    rgba(10, 20, 15, 0.75) 0%,
+                    rgba(18, 35, 28, 0.7) 40%,
+                    rgba(26, 51, 41, 0.78) 100%),
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
-            padding: 0 20px;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 800px; }
-        
-        .btn-primary {
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
             display: inline-block;
-            background: var(--secondary-color);
-            color: white;
-            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            animation: fadeSlideIn 0.6s ease-out 0.1s both;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.025em;
+            max-width: 900px;
+            animation: fadeSlideIn 0.6s ease-out 0.2s both;
+        }
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+            margin-bottom: 36px;
+            max-width: 650px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
+            line-height: 1.7;
+            animation: fadeSlideIn 0.6s ease-out 0.3s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 15px 34px;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
+            border-radius: var(--radius-full);
+            font-size: 1.05rem;
+            font-weight: 600;
             cursor: pointer;
             border: none;
-            transition: background 0.3s;
+            transition: all var(--transition);
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            box-shadow: 0 4px 20px rgba(200, 133, 46, 0.35);
+            animation: fadeSlideIn 0.6s ease-out 0.4s both;
         }
-        .btn-primary:hover { background: #c0392b; }
-        .btn-primary:disabled { background: #555; cursor: not-allowed; }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(200, 133, 46, 0.45);
+        }
+        .btn-primary:disabled {
+            background: #a0a0a0;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+        .btn-primary .arrow {
+            transition: transform var(--transition);
+        }
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
 
-        /* 2. LISTA ZEMLJIŠTA (LISTINGS) */
+        /* ============ BENEFITS SECTION ============ */
+        .benefits-section {
+            padding: 80px 0 90px;
+            position: relative;
+            z-index: 1;
+            background: var(--bg);
+            margin-top: -40px;
+        }
+
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: 92%;
+            max-width: 1280px;
             margin: auto;
-            padding: 40px 0;
+            padding: 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            font-size: 2.2rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .benefit-card {
+            background: var(--surface);
+            padding: 36px 30px 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            text-align: left;
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-xs);
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+        }
+        .benefit-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .benefit-icon.green {
+            background: var(--primary-surface);
+            color: var(--primary);
+        }
+        .benefit-icon.gold {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .benefit-card h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .benefit-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        /* ============ LISTINGS ============ */
+        .listings-header {
+            padding: 40px 0 10px;
+            text-align: center;
+        }
+        .listings-header .section-title {
+            margin-bottom: 6px;
+        }
+        .listings-header .property-count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .listings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            padding: 20px 0 60px;
         }
 
         .property-card {
-            background: var(--card-bg);
-            border-radius: 8px;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-slow);
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
-
         .property-card:hover {
-            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-6px);
+            border-color: transparent;
         }
 
+        .property-img-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #e8e5df;
+        }
         .property-img {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .property-card:hover .property-img {
+            transform: scale(1.06);
+        }
+        .property-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+            pointer-events: none;
+        }
+        .property-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: var(--accent);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .property-info {
-            padding: 20px;
-        }
-
-        .property-title {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .property-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .property-specs {
+            padding: 22px 24px 20px;
+            flex: 1;
             display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
+            flex-direction: column;
         }
-
+        .property-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .property-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.3;
+        }
+        .property-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 8px 0 14px;
+            letter-spacing: -0.02em;
+        }
+        .property-specs-row {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .property-specs-row span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg);
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+        }
         .btn-outline {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             width: 100%;
             text-align: center;
             background: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 11px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            margin-top: auto;
         }
         .property-card:hover .btn-outline {
-            background: var(--primary-color);
+            background: var(--primary);
             color: white;
         }
 
-        /* 3. DETALJI ZEMLJIŠTA (DETAIL VIEW) */
+        /* ============ DETAIL PAGE ============ */
         .detail-wrapper {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 20px;
+            gap: 36px;
+            margin-top: 10px;
         }
 
         .detail-gallery {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
+            max-width: 600px;
         }
 
         .gallery-container {
             position: relative;
             width: 100%;
-            margin-bottom: 20px;
         }
 
         .main-img-wrapper {
             position: relative;
             width: 100%;
-            height: 400px;
-            border-radius: 8px;
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            background: #eee;
+            box-shadow: var(--shadow-md);
+            background: #e8e5df;
             cursor: pointer;
+            border: 1px solid var(--border-light);
         }
 
         .main-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.35s ease-in-out;
         }
 
-        /* Animacija za promjenu slike */
         @keyframes gentleFade {
-            from { opacity: 0.3; }
-            to { opacity: 1; }
+            from {
+                opacity: 0.25;
+            }
+            to {
+                opacity: 1;
+            }
         }
         .image-fade {
-            animation: gentleFade 0.3s ease-in-out;
+            animation: gentleFade 0.35s ease-in-out;
         }
 
         .gallery-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            color: var(--primary);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            width: 44px;
+            height: 44px;
+            font-size: 1.1rem;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.3s;
+            transition: all var(--transition);
             z-index: 2;
+            box-shadow: var(--shadow-sm);
         }
-
         .gallery-btn:hover {
-            background: rgba(0, 0, 0, 0.9);
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-50%) scale(1.06);
         }
-
-        .gallery-btn.prev { left: 10px; }
-        .gallery-btn.next { right: 10px; }
+        .gallery-btn.prev {
+            left: 12px;
+        }
+        .gallery-btn.next {
+            right: 12px;
+        }
 
         .thumbnails {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 16px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+        }
+        .thumbnails::-webkit-scrollbar {
+            height: 5px;
+        }
+        .thumbnails::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .thumbnails::-webkit-scrollbar-thumb {
+            background: #d0ccc4;
+            border-radius: 10px;
         }
 
         .thumbnail {
             width: 80px;
             height: 60px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: var(--radius-xs);
             cursor: pointer;
             opacity: 0.5;
-            transition: all 0.3s;
+            transition: all var(--transition);
             border: 2px solid transparent;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-xs);
         }
-
         .thumbnail.active {
             opacity: 1;
-            border-color: var(--secondary-color);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(200, 133, 46, 0.2);
         }
-
-        .thumbnail:hover { opacity: 1; }
+        .thumbnail:hover {
+            opacity: 0.85;
+            border-color: #ccc;
+        }
 
         .detail-content {
             flex: 1;
             min-width: 300px;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: var(--surface);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
         }
 
+        .detail-location-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
         .detail-price {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin: 15px 0;
+            font-size: 2.2rem;
+            color: var(--accent);
+            font-weight: 800;
+            margin: 10px 0 16px;
+            letter-spacing: -0.025em;
+        }
+        .detail-size-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-warm);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .detail-divider {
+            margin: 22px 0;
+            border: 0;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .detail-content h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .detail-content .desc-text {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .features-list {
             list-style: none;
-            margin: 20px 0;
+            margin: 8px 0 0;
+            padding: 0;
         }
-
         .features-list li {
             margin-bottom: 10px;
-            padding-left: 25px;
+            padding-left: 28px;
             position: relative;
+            font-size: 0.93rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
-
         .features-list li::before {
-            content: '✓';
-            color: var(--secondary-color);
+            content: '';
             position: absolute;
             left: 0;
-            font-weight: bold;
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-surface);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231a3329' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: 12px 12px;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .back-btn {
-            background: #95a5a6;
-            color: white;
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: var(--radius-full);
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all var(--transition);
+            font-family: inherit;
+            box-shadow: var(--shadow-xs);
+        }
+        .back-btn:hover {
+            background: var(--bg-warm);
+            border-color: #ccc;
+            box-shadow: var(--shadow-sm);
         }
 
-        /* Form */
+        /* Contact Box */
         .contact-box {
-            margin-top: 30px;
-            background: var(--bg-color);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
+            margin-top: 28px;
+            background: var(--bg-warm);
+            padding: 26px 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-light);
         }
-        .contact-box input, .contact-box textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .contact-box h3 {
             font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-family: inherit;
+            background: var(--surface);
+            transition: all var(--transition);
+            color: var(--text);
+            resize: vertical;
+        }
+        .contact-box input:focus,
+        .contact-box textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(200, 133, 46, 0.08);
+        }
+        .contact-box input::placeholder,
+        .contact-box textarea::placeholder {
+            color: #b0ada6;
         }
         .contact-box button {
             width: 100%;
+            padding: 13px;
+            font-size: 0.95rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+            letter-spacing: -0.01em;
         }
-        
-        /* Status poruka (uspjeh/greška) */
-        .form-status {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: bold;
+        .contact-box .btn-primary {
+            display: block;
             text-align: center;
-            display: none;
-        }
-        .form-status.success {
-            background-color: #d4edda;
-            color: #155724;
-            display: block;
-        }
-        .form-status.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            display: block;
+            padding: 13px 24px;
+            font-size: 0.95rem;
+            border-radius: var(--radius-full);
         }
 
-        /* Lightbox (povećana slika) */
+        .form-status {
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            text-align: center;
+            display: none;
+            font-size: 0.9rem;
+        }
+        .form-status.success {
+            background-color: #e6f4ea;
+            color: #1a5c2a;
+            display: block;
+            border: 1px solid #c3e6cd;
+        }
+        .form-status.error {
+            background-color: #fce8e6;
+            color: #a82015;
+            display: block;
+            border: 1px solid #f5c6c1;
+        }
+
+        /* ============ LIGHTBOX ============ */
         .lightbox {
             display: none;
             position: fixed;
@@ -399,35 +847,220 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0, 0, 0, 0.94);
             z-index: 2000;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
         .lightbox.active {
             display: flex;
+            animation: fadeIn 0.25s ease-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         .lightbox-content {
-            max-width: 90%;
+            max-width: 92%;
             max-height: 90%;
             object-fit: contain;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             border-radius: 4px;
         }
         .lightbox-close {
             position: absolute;
             top: 20px;
-            right: 40px;
+            right: 32px;
             color: #fff;
             font-size: 40px;
-            font-weight: bold;
+            font-weight: 300;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s;
             z-index: 2001;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
         }
         .lightbox-close:hover {
-            color: var(--secondary-color);
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 0 30px;
+            margin-top: 40px;
+        }
+        footer .container {
+            text-align: center;
+        }
+        footer h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.015em;
+        }
+        footer p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+        }
+        footer .footer-email {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        footer .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 16px auto;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+        footer .copyright {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+                padding: 0.7rem 0;
+            }
+            .nav-links button {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+            .nav-links .btn-contact {
+                padding: 8px 16px;
+                margin-left: 2px;
+            }
+            .logo svg {
+                height: 30px;
+            }
+
+            .hero {
+                min-height: 75vh;
+                padding: 100px 16px 60px;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .btn-primary {
+                padding: 13px 26px;
+                font-size: 0.95rem;
+            }
+
+            .benefits-section {
+                padding: 50px 0 60px;
+                margin-top: -20px;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .benefit-card {
+                padding: 24px 20px;
+            }
+
+            .listings-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px 0 40px;
+            }
+            .property-card {
+                border-radius: var(--radius);
+            }
+            .property-img-wrapper {
+                aspect-ratio: 16 / 10;
+            }
+            .property-info {
+                padding: 16px 18px 18px;
+            }
+            .property-price {
+                font-size: 1.4rem;
+            }
+
+            .detail-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .detail-gallery {
+                max-width: 100%;
+                min-width: auto;
+            }
+            .main-img-wrapper {
+                aspect-ratio: 4 / 3;
+            }
+            .detail-content {
+                padding: 20px 18px;
+            }
+            .detail-price {
+                font-size: 1.7rem;
+            }
+            .gallery-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            .thumbnail {
+                width: 60px;
+                height: 46px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 14px;
+                font-size: 30px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 2px;
+            }
+            .nav-links button {
+                font-size: 0.75rem;
+                padding: 7px 10px;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 6px 14px;
+            }
+            .property-card {
+                border-radius: var(--radius-sm);
+            }
+            .property-img-wrapper {
+                aspect-ratio: 16 / 10;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -435,12 +1068,19 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo" onclick="navigateTo('home')">
-                <svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 25 L20 10 L35 25 V35 H5 Z" fill="#ffffff"/>
-                    <path d="M20 10 L20 0 L30 0 V10" fill="#e74c3c"/>
-                    <text x="45" y="28" font-family="Segoe UI, Tahoma, sans-serif" font-size="24" font-weight="bold" fill="#ffffff">Immo</text>
-                    <text x="110" y="28" font-family="Segoe UI, Tahoma, sans-serif" font-size="24" font-weight="bold" fill="#e74c3c">BiH</text>
+            <div class="logo" onclick="navigateTo('home')" title="Zur Startseite">
+                <svg width="170" height="38" viewBox="0 0 170 38" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#e0d8c8"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="2" y="20" width="28" height="16" rx="2" fill="none" stroke="white" stroke-width="2.2"/>
+                    <polygon points="16,4 4,20 28,20" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/>
+                    <line x1="16" y1="20" x2="16" y2="36" stroke="white" stroke-width="2.2"/>
+                    <text x="38" y="28" font-family="'Inter','Segoe UI',sans-serif" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="-0.5">Immo</text>
+                    <text x="104" y="28" font-family="'Inter','Segoe UI',sans-serif" font-size="22" font-weight="800" fill="#c8852e" letter-spacing="-0.5">BiH</text>
                 </svg>
             </div>
             <div class="nav-links">
@@ -452,84 +1092,101 @@
     </header>
 
     <main>
+        <!-- HOME -->
         <section id="view-home" class="view-section active">
             <div class="hero">
-                <h1>Investieren in Bosnien und Herzegowina</h1>
-                <p>Entdecken Sie traumhafte Baugrundstücke in erstklassigen Lagen. Perfekt für Ihr Eigenheim, als Feriendomizil oder als sichere Kapitalanlage.</p>
-                <button class="btn-primary" onclick="navigateTo('listings')">Grundstücke ansehen</button>
+                <div class="hero-badge">✦ Investition mit Zukunft</div>
+                <h1>Ihr <span>Traumgrundstück</span> in Bosnien &amp; Herzegowina</h1>
+                <p>Entdecken Sie erstklassige Baugrundstücke in atemberaubender Natur. Ob Eigenheim, Feriendomizil oder Kapitalanlage — hier finden Sie Ihr Stück Paradies.</p>
+                <button class="btn-primary" onclick="navigateTo('listings')">
+                    Grundstücke entdecken
+                    <span class="arrow">→</span>
+                </button>
             </div>
-            
-            <div class="container">
-                <h2 class="section-title">Warum in BiH investieren?</h2>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap; text-align: center;">
-                    <div style="flex:1; min-width: 250px; background: white; padding: 20px; border-radius: 8px;">
-                        <h3 style="color: var(--secondary-color);">💰 Attraktive Preise</h3>
-                        <p>Im Vergleich zum restlichen Europa bieten wir unschlagbare Quadratmeterpreise für erstklassiges Bauland.</p>
-                    </div>
-                    <div style="flex:1; min-width: 250px; background: white; padding: 20px; border-radius: 8px;">
-                        <h3 style="color: var(--secondary-color);">🌲 Wunderschöne Natur</h3>
-                        <p>Berge, Flüsse und Seen. Bosnien bietet eine unberührte Natur, die ihresgleichen sucht.</p>
-                    </div>
-                    <div style="flex:1; min-width: 250px; background: white; padding: 20px; border-radius: 8px;">
-                        <h3 style="color: var(--secondary-color);">📜 100% Sicher</h3>
-                        <p>Alle unsere Grundstücke haben geprüfte Papiere (1/1 Besitz) und sind bereit für die Bebauung.</p>
+
+            <div class="benefits-section">
+                <div class="container">
+                    <h2 class="section-title">Warum in BiH investieren?</h2>
+                    <p class="section-subtitle">Drei gute Gründe, die für sich sprechen</p>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon gold">💰</div>
+                            <h3>Attraktive Preise</h3>
+                            <p>Im europäischen Vergleich unschlagbare Quadratmeterpreise für erstklassiges, erschlossenes Bauland mit großem Wertsteigerungspotenzial.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon green">🌲</div>
+                            <h3>Wunderschöne Natur</h3>
+                            <p>Unberührte Landschaften, kristallklare Flüsse, dichte Wälder und eine atemberaubende Bergkulisse direkt vor Ihrer Haustür.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon gold">📜</div>
+                            <h3>100 % Sicher</h3>
+                            <p>Alle Grundstücke mit geprüften Katasterauszügen und sauberem 1/1-Besitz. Rechtssicher, transparent und sofort bebaubar.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- LISTINGS -->
         <section id="view-listings" class="view-section">
             <div class="container">
-                <h2 class="section-title">Unsere aktuellen Angebote</h2>
+                <div class="listings-header">
+                    <h2 class="section-title">Unsere aktuellen Angebote</h2>
+                    <p class="property-count" id="property-count"></p>
+                </div>
                 <div class="listings-grid" id="listings-container">
-                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- DETAIL -->
         <section id="view-detail" class="view-section">
             <div class="container">
-                <button class="back-btn" onclick="navigateTo('listings')">← Zurück zur Übersicht</button>
-                <h2 class="section-title" id="detail-title">Titel</h2>
-                
+                <button class="back-btn" onclick="navigateTo('listings')">
+                    <span>←</span> Zurück zur Übersicht
+                </button>
+                <h2 class="section-title" id="detail-title" style="text-align:left; margin-bottom:6px;">Titel</h2>
+
                 <div class="detail-wrapper">
-                    
                     <div class="detail-gallery">
                         <div class="gallery-container">
                             <div class="main-img-wrapper" id="main-img-wrapper" onclick="openLightbox()">
-                                <button class="gallery-btn prev" onclick="event.stopPropagation(); changeImage(-1)">&#10094;</button>
+                                <button class="gallery-btn prev" onclick="event.stopPropagation(); changeImage(-1)" aria-label="Vorheriges Bild">◂</button>
                                 <img id="detail-main-image" src="" alt="Grundstück">
-                                <button class="gallery-btn next" onclick="event.stopPropagation(); changeImage(1)">&#10095;</button>
+                                <button class="gallery-btn next" onclick="event.stopPropagation(); changeImage(1)" aria-label="Nächstes Bild">▸</button>
                             </div>
                             <div class="thumbnails" id="detail-thumbnails">
-                                </div>
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div class="detail-content">
-                        <p style="color: #7f8c8d; font-size: 1.1rem;">📍 <span id="detail-location">Ort</span></p>
+                        <div class="detail-location-row">📍 <span id="detail-location">Ort</span></div>
                         <div class="detail-price" id="detail-price">0 €</div>
-                        <p><strong>Größe:</strong> <span id="detail-size">0</span> m²</p>
-                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                        
+                        <div class="detail-size-badge">📏 <span id="detail-size">0</span> m²</div>
+
+                        <hr class="detail-divider">
+
                         <h3>Beschreibung</h3>
-                        <div id="detail-desc" style="margin-top: 10px; line-height: 1.8;">Beschreibungstext hier...</div>
-                        
-                        <h3 style="margin-top: 20px;">Highlights</h3>
+                        <div class="desc-text" id="detail-desc">Beschreibungstext hier...</div>
+
+                        <h3 style="margin-top: 18px;">Highlights</h3>
                         <ul class="features-list" id="detail-features">
-                            </ul>
+                        </ul>
 
                         <div class="contact-box">
-                            <h3>Interesse an diesem Grundstück?</h3>
+                            <h3>💬 Interesse an diesem Grundstück?</h3>
                             <form id="contact-form">
                                 <input type="hidden" name="access_key" value="b43f75b8-a605-43f9-87a4-9ba98ac348ca">
-                                
                                 <input type="hidden" id="form-subject" name="subject" value="Novi upit sa web stranice">
                                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                                
-                                <input type="text" name="Name" placeholder="Ihr Name" required>
-                                <input type="email" name="Email" placeholder="Ihre E-Mail" required>
-                                <textarea name="Nachricht" placeholder="Ich hätte gerne weitere Informationen..." required rows="4"></textarea>
-                                <button type="submit" class="btn-primary" id="form-submit-btn">Anfrage senden</button>
+
+                                <input type="text" name="Name" placeholder="Ihr vollständiger Name" required>
+                                <input type="email" name="Email" placeholder="Ihre E-Mail-Adresse" required>
+                                <textarea name="Nachricht" placeholder="Ich hätte gerne weitere Informationen zu diesem Grundstück..." required rows="3"></textarea>
+                                <button type="submit" class="btn-primary" id="form-submit-btn">Anfrage senden ✉</button>
                             </form>
                             <div id="form-result" class="form-status"></div>
                         </div>
@@ -542,88 +1199,92 @@
     <footer id="footer">
         <div class="container">
             <h3>Kontaktieren Sie uns</h3>
-            <p>E-Mail: infobihimmo@gmail.com | Telefon: +49 123 456 789</p>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: #aaa;">&copy; 2026 Immobilien BiH. Alle Rechte vorbehalten.</p>
+            <p>E-Mail: <span class="footer-email">infobihimmo@gmail.com</span></p>
+            <p>Telefon: +49 123 456 789</p>
+            <div class="footer-divider"></div>
+            <p class="copyright">&copy; 2026 Immobilien BiH. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-    <!-- Lightbox Modal -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" src="">
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Vergrößerte Ansicht">
     </div>
 
     <script>
-        // OVDJE UNOSIŠ SVOJA ZEMLJIŠTA
-        const properties = [
-            {
-                id: 1,
-                title: "Grundstück in Bosnien und Herzegowina",
-                location: "Umgebung von Bosanski Petrovac",
-                price: "32.000",
-                size: "27.500",
-                images: [
-                    "https://i.imgur.com/eLXUrgP.png",
-                    "https://i.imgur.com/0HbcbVl.jpeg",
-                    "https://i.imgur.com/8o0P284.png"
-                ],
-                description: `<strong>EXKLUSIVES GRUNDSTÜCK MIT HOHEM SOLARPOTENZIAL — BOSANSKI PETROVAC</strong><br><br>
-Zum Verkauf steht ein großes Grundstück mit einer Fläche von 2,75 Hektar in hervorragender Lage zwischen Stadt und Dorf in der Umgebung von Bosanski Petrovac.<br><br>
-<strong>Die Lage bietet eine seltene Kombination aus:</strong><br>
-- sauberer Luft<br>
-- Ruhe und Privatsphäre<br>
-- guter Verkehrsanbindung<br>
-- sehr vielen Sonnentagen im Jahr<br><br>
-<strong>Das Grundstück befindet sich:</strong><br>
-- ca. 3 km von der Stadt entfernt<br>
-- ca. 1 km von der Hauptstraße entfernt<br>
-- in der Nähe der Grenze zu Kroatien und der EU<br><br>
-<strong>Hauptvorteile:</strong><br>
-✅ Sehr saubere Luft (AQI ~38 – gute Luftqualität)<br>
-✅ Eine der sonnigsten Regionen des Balkans<br>
-✅ Großes Potenzial für Solarprojekte<br>
-✅ Ideal für Eco / Off-Grid Lifestyle<br>
-✅ Geeignet für Wochenendhaus, Landwirtschaft oder privaten Rückzugsort<br>
-✅ Ruhige Lage ohne Stadtlärm<br>
-✅ Gute Erreichbarkeit und Nähe zur Infrastruktur<br><br>
-Das Grundstück ist im Kataster eingetragen und verfügt über ordnungsgemäße Dokumentation.<br><br>
-<strong>Ideal für:</strong><br>
-- private Investoren<br>
-- Solarprojekte<br>
-- Wochenendgrundstück<br>
-- biologische Landwirtschaft<br>
-- Menschen, die ein ruhiges Leben in der Natur suchen<br><br>
-Seriöse Käufer können das Grundstück mit einer Anzahlung reservieren, während die administrativen Verfahren abgeschlossen werden.<br><br>
-Falls Sie an kleineren oder größeren Grundstücken interessiert sind – mit Wald, Wiese oder einer Kombination davon – haben wir ebenfalls passende Angebote verfügbar.<br><br>
-Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte eine private Nachricht.`,
-                features: ["Baugenehmigung vorhanden", "Strom- und Wasseranschluss am Grundstück", "Asphaltierte Zufahrtsstraße", "1/1 Eigentum (saubere Papiere)"]
-            },
-            {
-                id: 2,
-                title: "Grundstück 418",
-                location: "Bosanski Petrovac",
-                price: "60.000",
-                size: "1.800",
-                images: [
-                    "https://i.imgur.com/i5AtA0w.jpeg",
-                    "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Einzigartige Gelegenheit! Grundstück in unmittelbarer Nähe zum kristallklaren Fluss Una. Perfekt für den Bau eines Ferienhauses oder für touristische Vermietung. Google Maps: https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA",
-                features: ["https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA", "Touristisch sehr attraktive Zone", "Ruhige Nachbarschaft", "Baugenehmigung möglich"]
-            },
-            {
-               id: 3,
-                title: "Grundstück 541",
-                location: "Bosanski Petrovac",
-                price: "12.000",
-                size: "1.402",
-                images: [
-                    "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                ],
-                description: "Großes Areal im sonnigen Süden von Bosnien und Herzegowina. Sehr fruchtbarer Boden, ideal für Weinanbau oder als große Investitionsfläche für die Zukunft.",
-                features: ["Sehr fruchtbarer Boden", "Viel Sonnenschein (Klima ähnlich wie Dalmatien)", "Nahe der Autobahnauffahrt", "Strom in 50m Entfernung"]
-            }
-        ];
+        // ============ PROPERTY DATA ============
+        const properties = [{
+            id: 1,
+            title: "Grundstück in Bosnien und Herzegowina",
+            location: "Umgebung von Bosanski Petrovac",
+            price: "32.000",
+            size: "27.500",
+            images: [
+                "https://i.imgur.com/eLXUrgP.png",
+                "https://i.imgur.com/0HbcbVl.jpeg",
+                "https://i.imgur.com/8o0P284.png"
+            ],
+            description: `<strong>EXKLUSIVES GRUNDSTÜCK MIT HOHEM SOLARPOTENZIAL — BOSANSKI PETROVAC</strong><br><br>
+        Zum Verkauf steht ein großes Grundstück mit einer Fläche von 2,75 Hektar in hervorragender Lage zwischen Stadt und Dorf in der Umgebung von Bosanski Petrovac.<br><br>
+        <strong>Die Lage bietet eine seltene Kombination aus:</strong><br>
+        - sauberer Luft<br>
+        - Ruhe und Privatsphäre<br>
+        - guter Verkehrsanbindung<br>
+        - sehr vielen Sonnentagen im Jahr<br><br>
+        <strong>Das Grundstück befindet sich:</strong><br>
+        - ca. 3 km von der Stadt entfernt<br>
+        - ca. 1 km von der Hauptstraße entfernt<br>
+        - in der Nähe der Grenze zu Kroatien und der EU<br><br>
+        <strong>Hauptvorteile:</strong><br>
+        ✅ Sehr saubere Luft (AQI ~38 – gute Luftqualität)<br>
+        ✅ Eine der sonnigsten Regionen des Balkans<br>
+        ✅ Großes Potenzial für Solarprojekte<br>
+        ✅ Ideal für Eco / Off-Grid Lifestyle<br>
+        ✅ Geeignet für Wochenendhaus, Landwirtschaft oder privaten Rückzugsort<br>
+        ✅ Ruhige Lage ohne Stadtlärm<br>
+        ✅ Gute Erreichbarkeit und Nähe zur Infrastruktur<br><br>
+        Das Grundstück ist im Kataster eingetragen und verfügt über ordnungsgemäße Dokumentation.<br><br>
+        <strong>Ideal für:</strong><br>
+        - private Investoren<br>
+        - Solarprojekte<br>
+        - Wochenendgrundstück<br>
+        - biologische Landwirtschaft<br>
+        - Menschen, die ein ruhiges Leben in der Natur suchen<br><br>
+        Seriöse Käufer können das Grundstück mit einer Anzahlung reservieren, während die administrativen Verfahren abgeschlossen werden.<br><br>
+        Falls Sie an kleineren oder größeren Grundstücken interessiert sind – mit Wald, Wiese oder einer Kombination davon – haben wir ebenfalls passende Angebote verfügbar.<br><br>
+        Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte eine private Nachricht.`,
+            features: ["Baugenehmigung vorhanden", "Strom- und Wasseranschluss am Grundstück",
+                "Asphaltierte Zufahrtsstraße", "1/1 Eigentum (saubere Papiere)"
+            ]
+        }, {
+            id: 2,
+            title: "Grundstück 418",
+            location: "Bosanski Petrovac",
+            price: "60.000",
+            size: "1.800",
+            images: [
+                "https://i.imgur.com/i5AtA0w.jpeg",
+                "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            ],
+            description: "Einzigartige Gelegenheit! Grundstück in unmittelbarer Nähe zum kristallklaren Fluss Una. Perfekt für den Bau eines Ferienhauses oder für touristische Vermietung. Google Maps: https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA",
+            features: ["https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA", "Touristisch sehr attraktive Zone",
+                "Ruhige Nachbarschaft", "Baugenehmigung möglich"
+            ]
+        }, {
+            id: 3,
+            title: "Grundstück 541",
+            location: "Bosanski Petrovac",
+            price: "12.000",
+            size: "1.402",
+            images: [
+                "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            ],
+            description: "Großes Areal im sonnigen Süden von Bosnien und Herzegowina. Sehr fruchtbarer Boden, ideal für Weinanbau oder als große Investitionsfläche für die Zukunft.",
+            features: ["Sehr fruchtbarer Boden", "Viel Sonnenschein (Klima ähnlich wie Dalmatien)",
+                "Nahe der Autobahnauffahrt", "Strom in 50m Entfernung"
+            ]
+        }];
 
         let currentGalleryImages = [];
         let currentImageIndex = 0;
@@ -632,9 +1293,8 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
             document.querySelectorAll('.view-section').forEach(section => {
                 section.classList.remove('active');
             });
-
             document.getElementById('view-' + viewId).classList.add('active');
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if (viewId === 'detail' && propertyId !== null) {
                 loadPropertyDetails(propertyId);
@@ -643,25 +1303,30 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
 
         function renderListings() {
             const container = document.getElementById('listings-container');
-            container.innerHTML = ''; 
+            container.innerHTML = '';
+            const countEl = document.getElementById('property-count');
+            if (countEl) countEl.textContent = properties.length + ' Grundstücke verfügbar';
 
             properties.forEach(prop => {
                 const card = document.createElement('div');
                 card.className = 'property-card';
                 card.onclick = () => navigateTo('detail', prop.id);
-
                 const mainImage = prop.images && prop.images.length > 0 ? prop.images[0] : '';
 
                 card.innerHTML = `
-                    <img src="${mainImage}" alt="${prop.title}" class="property-img">
+                    <div class="property-img-wrapper">
+                        <img src="${mainImage}" alt="${prop.title}" class="property-img" loading="lazy">
+                        <div class="property-img-overlay"></div>
+                        <div class="property-badge">${prop.price} €</div>
+                    </div>
                     <div class="property-info">
-                        <div class="property-specs">
-                            <span>📍 ${prop.location}</span>
-                            <span>📏 ${prop.size} m²</span>
-                        </div>
+                        <div class="property-location">📍 ${prop.location}</div>
                         <h3 class="property-title">${prop.title}</h3>
-                        <div class="property-price">${prop.price} €</div>
-                        <button class="btn-outline">Details ansehen</button>
+                        <div class="property-specs-row">
+                            <span>📏 ${Number(prop.size).toLocaleString('de-DE')} m²</span>
+                            <span>🏷️ Bauland</span>
+                        </div>
+                        <button class="btn-outline">Details ansehen →</button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -674,13 +1339,11 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
 
             document.getElementById('detail-title').innerText = prop.title;
             document.getElementById('detail-location').innerText = prop.location;
-            document.getElementById('detail-price').innerText = prop.price + ' €';
-            document.getElementById('detail-size').innerText = prop.size;
+            document.getElementById('detail-price').innerText = Number(prop.price).toLocaleString('de-DE') + ' €';
+            document.getElementById('detail-size').innerText = Number(prop.size).toLocaleString('de-DE');
             document.getElementById('detail-desc').innerHTML = prop.description;
-            
             document.getElementById('form-subject').value = "Anfrage für: " + prop.title;
 
-            // Sakrij obavijest ako je klijent ranije slao poruku
             const resultDiv = document.getElementById('form-result');
             resultDiv.style.display = "none";
             resultDiv.className = "form-status";
@@ -704,9 +1367,7 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
 
         function updateGalleryUI() {
             if (currentGalleryImages.length === 0) return;
-
             const mainImageEl = document.getElementById('detail-main-image');
-            // Dodajemo fade animaciju pri promjeni slike
             mainImageEl.classList.add('image-fade');
             mainImageEl.src = currentGalleryImages[currentImageIndex];
             mainImageEl.addEventListener('animationend', () => {
@@ -715,62 +1376,60 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
 
             const thumbnailsContainer = document.getElementById('detail-thumbnails');
             thumbnailsContainer.innerHTML = '';
-
             currentGalleryImages.forEach((imgSrc, index) => {
                 const thumb = document.createElement('img');
                 thumb.src = imgSrc;
                 thumb.className = 'thumbnail' + (index === currentImageIndex ? ' active' : '');
-                
                 thumb.onclick = (e) => {
                     e.stopPropagation();
                     currentImageIndex = index;
                     updateGalleryUI();
                 };
-                
                 thumbnailsContainer.appendChild(thumb);
             });
         }
 
         function changeImage(direction) {
-            if (currentGalleryImages.length <= 1) return; 
-
+            if (currentGalleryImages.length <= 1) return;
             currentImageIndex += direction;
-            
-            if (currentImageIndex < 0) {
-                currentImageIndex = currentGalleryImages.length - 1;
-            } else if (currentImageIndex >= currentGalleryImages.length) {
-                currentImageIndex = 0;
-            }
-
+            if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
+            else if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
             updateGalleryUI();
         }
 
-        // Lightbox funkcije
         function openLightbox() {
             if (currentGalleryImages.length === 0) return;
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             lightboxImg.src = currentGalleryImages[currentImageIndex];
             lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
         }
 
-        // LOGIKA ZA FORMU BEZ PREBACIVANJA STRANICE
+        // Keyboard support for lightbox
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') changeImage(-1);
+                if (e.key === 'ArrowRight') changeImage(1);
+            }
+        });
+
+        // ============ FORM HANDLER ============
         document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            
+            e.preventDefault();
             const form = e.target;
             const result = document.getElementById('form-result');
             const button = document.getElementById('form-submit-btn');
-            
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
-            
+
             button.innerText = "Wird gesendet...";
             button.disabled = true;
             result.style.display = "none";
@@ -783,28 +1442,24 @@ Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte 
                     'Accept': 'application/json'
                 },
                 body: json
-            })
-            .then(async (response) => {
-                let json = await response.json();
+            }).then(async (response) => {
+                let jsonResp = await response.json();
                 if (response.status == 200) {
-                    result.innerHTML = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
+                    result.innerHTML = "✅ Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
                     result.classList.add("success");
-                    form.reset(); 
+                    form.reset();
                 } else {
                     console.log(response);
-                    result.innerHTML = json.message || "Fehler beim Senden.";
+                    result.innerHTML = jsonResp.message || "Fehler beim Senden.";
                     result.classList.add("error");
                 }
-            })
-            .catch(error => {
+            }).catch(error => {
                 console.log(error);
-                result.innerHTML = "Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.";
+                result.innerHTML = "❌ Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.";
                 result.classList.add("error");
-            })
-            .then(function() {
-                button.innerText = "Anfrage senden";
+            }).then(function() {
+                button.innerText = "Anfrage senden ✉";
                 button.disabled = false;
-                
                 setTimeout(() => {
                     result.style.display = "none";
                 }, 5000);
