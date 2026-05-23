@@ -380,7 +380,6 @@
         }
 
         /* ============ LISTINGS ============ */
-        /* Dodato: pomeranje cele sekcije nadole da naslov ne ulazi u header */
         #view-listings {
             padding-top: 80px;
         }
@@ -571,12 +570,8 @@
         }
 
         @keyframes gentleFade {
-            from {
-                opacity: 0.25;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0.25; }
+            to { opacity: 1; }
         }
         .image-fade {
             animation: gentleFade 0.35s ease-in-out;
@@ -607,12 +602,8 @@
             box-shadow: var(--shadow-md);
             transform: translateY(-50%) scale(1.06);
         }
-        .gallery-btn.prev {
-            left: 12px;
-        }
-        .gallery-btn.next {
-            right: 12px;
-        }
+        .gallery-btn.prev { left: 12px; }
+        .gallery-btn.next { right: 12px; }
 
         .thumbnails {
             display: flex;
@@ -623,16 +614,9 @@
             scrollbar-width: thin;
             scrollbar-color: #ccc transparent;
         }
-        .thumbnails::-webkit-scrollbar {
-            height: 5px;
-        }
-        .thumbnails::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .thumbnails::-webkit-scrollbar-thumb {
-            background: #d0ccc4;
-            border-radius: 10px;
-        }
+        .thumbnails::-webkit-scrollbar { height: 5px; }
+        .thumbnails::-webkit-scrollbar-track { background: transparent; }
+        .thumbnails::-webkit-scrollbar-thumb { background: #d0ccc4; border-radius: 10px; }
 
         .thumbnail {
             width: 80px;
@@ -651,10 +635,7 @@
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(200, 133, 46, 0.2);
         }
-        .thumbnail:hover {
-            opacity: 0.85;
-            border-color: #ccc;
-        }
+        .thumbnail:hover { opacity: 0.85; border-color: #ccc; }
 
         .detail-content {
             flex: 1;
@@ -865,12 +846,8 @@
             animation: fadeIn 0.25s ease-out;
         }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .lightbox-content {
             max-width: 92%;
@@ -943,9 +920,7 @@
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
-            #view-listings {
-                padding-top: 70px;
-            }
+            #view-listings { padding-top: 70px; }
             .nav-container {
                 flex-wrap: wrap;
                 gap: 8px;
@@ -956,122 +931,41 @@
                 font-size: 0.8rem;
                 padding: 8px 12px;
             }
-            .nav-links .btn-contact {
-                padding: 8px 16px;
-                margin-left: 2px;
-            }
-            .logo svg {
-                height: 30px;
-            }
-
+            .nav-links .btn-contact { padding: 8px 16px; margin-left: 2px; }
+            .logo svg { height: 30px; }
             .hero {
                 min-height: 75vh;
                 padding: 100px 16px 60px;
             }
-            .hero h1 {
-                font-size: 1.9rem;
-            }
-            .hero p {
-                font-size: 0.95rem;
-            }
-            .btn-primary {
-                padding: 13px 26px;
-                font-size: 0.95rem;
-            }
-
-            .benefits-section {
-                padding: 50px 0 60px;
-                margin-top: -20px;
-            }
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-            .benefit-card {
-                padding: 24px 20px;
-            }
-
-            .listings-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 10px 0 40px;
-            }
-            .property-card {
-                border-radius: var(--radius);
-            }
-            .property-img-wrapper {
-                aspect-ratio: 16 / 10;
-            }
-            .property-info {
-                padding: 16px 18px 18px;
-            }
-            .property-price {
-                font-size: 1.4rem;
-            }
-
-            .detail-wrapper {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .detail-gallery {
-                max-width: 100%;
-                min-width: auto;
-            }
-            .main-img-wrapper {
-                aspect-ratio: 4 / 3;
-            }
-            .detail-content {
-                padding: 20px 18px;
-            }
-            .detail-price {
-                font-size: 1.7rem;
-            }
-            .gallery-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 0.9rem;
-            }
-            .thumbnail {
-                width: 60px;
-                height: 46px;
-            }
-
-            .lightbox-close {
-                top: 10px;
-                right: 14px;
-                font-size: 30px;
-                width: 40px;
-                height: 40px;
-            }
+            .hero h1 { font-size: 1.9rem; }
+            .hero p { font-size: 0.95rem; }
+            .btn-primary { padding: 13px 26px; font-size: 0.95rem; }
+            .benefits-section { padding: 50px 0 60px; margin-top: -20px; }
+            .benefits-grid { grid-template-columns: 1fr; gap: 16px; }
+            .benefit-card { padding: 24px 20px; }
+            .listings-grid { grid-template-columns: 1fr; gap: 20px; padding: 10px 0 40px; }
+            .property-card { border-radius: var(--radius); }
+            .property-img-wrapper { aspect-ratio: 16 / 10; }
+            .property-info { padding: 16px 18px 18px; }
+            .property-price { font-size: 1.4rem; }
+            .detail-wrapper { flex-direction: column; gap: 20px; }
+            .detail-gallery { max-width: 100%; min-width: auto; }
+            .main-img-wrapper { aspect-ratio: 4 / 3; }
+            .detail-content { padding: 20px 18px; }
+            .detail-price { font-size: 1.7rem; }
+            .gallery-btn { width: 36px; height: 36px; font-size: 0.9rem; }
+            .thumbnail { width: 60px; height: 46px; }
+            .lightbox-close { top: 10px; right: 14px; font-size: 30px; width: 40px; height: 40px; }
         }
 
         @media (max-width: 480px) {
-            #view-listings {
-                padding-top: 60px;
-            }
-            .nav-links {
-                gap: 2px;
-            }
-            .nav-links button {
-                font-size: 0.75rem;
-                padding: 7px 10px;
-            }
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            .hero-badge {
-                font-size: 0.7rem;
-                padding: 6px 14px;
-            }
-            .property-card {
-                border-radius: var(--radius-sm);
-            }
-            .property-img-wrapper {
-                aspect-ratio: 16 / 10;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
+            #view-listings { padding-top: 60px; }
+            .nav-links { gap: 2px; }
+            .nav-links button { font-size: 0.75rem; padding: 7px 10px; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero-badge { font-size: 0.7rem; padding: 6px 14px; }
+            .property-card { border-radius: var(--radius-sm); }
+            .section-title { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -1103,7 +997,6 @@
     </header>
 
     <main>
-        <!-- HOME -->
         <section id="view-home" class="view-section active">
             <div class="hero">
                 <div class="hero-badge">✦ Investition mit Zukunft</div>
@@ -1140,60 +1033,46 @@
             </div>
         </section>
 
-        <!-- LISTINGS -->
         <section id="view-listings" class="view-section">
             <div class="container">
                 <div class="listings-header">
                     <h2 class="section-title">Unsere aktuellen Angebote</h2>
                     <p class="property-count" id="property-count"></p>
                 </div>
-                <div class="listings-grid" id="listings-container">
-                </div>
+                <div class="listings-grid" id="listings-container"></div>
             </div>
         </section>
 
-        <!-- DETAIL -->
         <section id="view-detail" class="view-section">
             <div class="container">
-                <button class="back-btn" onclick="navigateTo('listings')">
-                    <span>←</span> Zurück zur Übersicht
-                </button>
+                <button class="back-btn" onclick="navigateTo('listings')"><span>←</span> Zurück zur Übersicht</button>
                 <h2 class="section-title" id="detail-title" style="text-align:left; margin-bottom:6px;">Titel</h2>
-
                 <div class="detail-wrapper">
                     <div class="detail-gallery">
                         <div class="gallery-container">
                             <div class="main-img-wrapper" id="main-img-wrapper" onclick="openLightbox()">
-                                <button class="gallery-btn prev" onclick="event.stopPropagation(); changeImage(-1)" aria-label="Vorheriges Bild">◂</button>
+                                <button class="gallery-btn prev" onclick="event.stopPropagation(); changeImage(-1)">◂</button>
                                 <img id="detail-main-image" src="" alt="Grundstück">
-                                <button class="gallery-btn next" onclick="event.stopPropagation(); changeImage(1)" aria-label="Nächstes Bild">▸</button>
+                                <button class="gallery-btn next" onclick="event.stopPropagation(); changeImage(1)">▸</button>
                             </div>
-                            <div class="thumbnails" id="detail-thumbnails">
-                            </div>
+                            <div class="thumbnails" id="detail-thumbnails"></div>
                         </div>
                     </div>
-
                     <div class="detail-content">
                         <div class="detail-location-row">📍 <span id="detail-location">Ort</span></div>
                         <div class="detail-price" id="detail-price">0 €</div>
                         <div class="detail-size-badge">📏 <span id="detail-size">0</span> m²</div>
-
                         <hr class="detail-divider">
-
                         <h3>Beschreibung</h3>
-                        <div class="desc-text" id="detail-desc">Beschreibungstext hier...</div>
-
+                        <div class="desc-text" id="detail-desc"></div>
                         <h3 style="margin-top: 18px;">Highlights</h3>
-                        <ul class="features-list" id="detail-features">
-                        </ul>
-
+                        <ul class="features-list" id="detail-features"></ul>
                         <div class="contact-box">
                             <h3>💬 Interesse an diesem Grundstück?</h3>
                             <form id="contact-form">
                                 <input type="hidden" name="access_key" value="b43f75b8-a605-43f9-87a4-9ba98ac348ca">
                                 <input type="hidden" id="form-subject" name="subject" value="Novi upit sa web stranice">
                                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
                                 <input type="text" name="Name" placeholder="Ihr vollständiger Name" required>
                                 <input type="email" name="Email" placeholder="Ihre E-Mail-Adresse" required>
                                 <textarea name="Nachricht" placeholder="Ich hätte gerne weitere Informationen zu diesem Grundstück..." required rows="3"></textarea>
@@ -1217,96 +1096,118 @@
         </div>
     </footer>
 
-    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img class="lightbox-content" id="lightbox-img" src="" alt="Vergrößerte Ansicht">
     </div>
 
     <script>
-        // ============ PROPERTY DATA ============
-        const properties = [{
-            id: 1,
-            title: "Grundstück in Bosnien und Herzegowina",
-            location: "Umgebung von Bosanski Petrovac",
-            price: "32,000",
-            size: "27,500",
-            images: [
-                "https://i.imgur.com/eLXUrgP.png",
-                "https://i.imgur.com/0HbcbVl.jpeg",
-                "https://i.imgur.com/8o0P284.png"
-            ],
-            description: `<strong>EXKLUSIVES GRUNDSTÜCK MIT HOHEM SOLARPOTENZIAL — BOSANSKI PETROVAC</strong><br><br>
-        Zum Verkauf steht ein großes Grundstück mit einer Fläche von 2,75 Hektar in hervorragender Lage zwischen Stadt und Dorf in der Umgebung von Bosanski Petrovac.<br><br>
-        <strong>Die Lage bietet eine seltene Kombination aus:</strong><br>
-        - sauberer Luft<br>
-        - Ruhe und Privatsphäre<br>
-        - guter Verkehrsanbindung<br>
-        - sehr vielen Sonnentagen im Jahr<br><br>
-        <strong>Das Grundstück befindet sich:</strong><br>
-        - ca. 3 km von der Stadt entfernt<br>
-        - ca. 1 km von der Hauptstraße entfernt<br>
-        - in der Nähe der Grenze zu Kroatien und der EU<br><br>
-        <strong>Hauptvorteile:</strong><br>
-        ✅ Sehr saubere Luft (AQI ~38 – gute Luftqualität)<br>
-        ✅ Eine der sonnigsten Regionen des Balkans<br>
-        ✅ Großes Potenzial für Solarprojekte<br>
-        ✅ Ideal für Eco / Off-Grid Lifestyle<br>
-        ✅ Geeignet für Wochenendhaus, Landwirtschaft oder privaten Rückzugsort<br>
-        ✅ Ruhige Lage ohne Stadtlärm<br>
-        ✅ Gute Erreichbarkeit und Nähe zur Infrastruktur<br><br>
-        Das Grundstück ist im Kataster eingetragen und verfügt über ordnungsgemäße Dokumentation.<br><br>
-        <strong>Ideal für:</strong><br>
-        - private Investoren<br>
-        - Solarprojekte<br>
-        - Wochenendgrundstück<br>
-        - biologische Landwirtschaft<br>
-        - Menschen, die ein ruhiges Leben in der Natur suchen<br><br>
-        Seriöse Käufer können das Grundstück mit einer Anzahlung reservieren, während die administrativen Verfahren abgeschlossen werden.<br><br>
-        Falls Sie an kleineren oder größeren Grundstücken interessiert sind – mit Wald, Wiese oder einer Kombination davon – haben wir ebenfalls passende Angebote verfügbar.<br><br>
-        Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte eine private Nachricht.`,
-            features: ["Baugenehmigung vorhanden", "Strom- und Wasseranschluss am Grundstück",
-                "Asphaltierte Zufahrtsstraße", "1/1 Eigentum (saubere Papiere)"
-            ]
-        }, {
-            id: 2,
-            title: "Grundstück 418",
-            location: "Bosanski Petrovac",
-            price: "60.000",
-            size: "1.800",
-            images: [
-                "https://i.imgur.com/i5AtA0w.jpeg",
-                "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-            ],
-            description: "Einzigartige Gelegenheit! Grundstück in unmittelbarer Nähe zum kristallklaren Fluss Una. Perfekt für den Bau eines Ferienhauses oder für touristische Vermietung. Google Maps: https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA",
-            features: ["https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA", "Touristisch sehr attraktive Zone",
-                "Ruhige Nachbarschaft", "Baugenehmigung möglich"
-            ]
-        }, {
-            id: 3,
-            title: "Grundstück 541",
-            location: "Bosanski Petrovac",
-            price: "12.000",
-            size: "1.402",
-            images: [
-                "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-            ],
-            description: "Großes Areal im sonnigen Süden von Bosnien und Herzegowina. Sehr fruchtbarer Boden, ideal für Weinanbau oder als große Investitionsfläche für die Zukunft.",
-            features: ["Sehr fruchtbarer Boden", "Viel Sonnenschein (Klima ähnlich wie Dalmatien)",
-                "Nahe der Autobahnauffahrt", "Strom in 50m Entfernung"
-            ]
-        }];
+        // Pomoćna funkcija za parsiranje brojeva iz stringova sa zarezima/tačkama
+        function parseNumber(str) {
+            if (!str) return 0;
+            // Ukloni sve što nije cifra (zadrži samo brojeve)
+            const cleaned = str.replace(/\D/g, '');
+            return parseInt(cleaned, 10) || 0;
+        }
+
+        // ============ PODACI O NEKRETNINAMA ============
+        const properties = [
+            {
+                id: 1,
+                title: "Grundstück in Bosnien und Herzegowina",
+                location: "Umgebung von Bosanski Petrovac",
+                price: "32,000",   // ostaće kao string, parsiraćemo ga
+                size: "27,500",
+                images: [
+                    "https://i.imgur.com/eLXUrgP.png",
+                    "https://i.imgur.com/0HbcbVl.jpeg",
+                    "https://i.imgur.com/8o0P284.png"
+                ],
+                description: `<strong>EXKLUSIVES GRUNDSTÜCK MIT HOHEM SOLARPOTENZIAL — BOSANSKI PETROVAC</strong><br><br>
+Zum Verkauf steht ein großes Grundstück mit einer Fläche von 27.500 m² (2,75 Hektar) in hervorragender Lage zwischen Stadt und Dorf in der Umgebung von Bosanski Petrovac.<br><br>
+<strong>Die Lage bietet eine seltene Kombination aus:</strong><br>
+- sauberer Luft<br>
+- Ruhe und Privatsphäre<br>
+- guter Verkehrsanbindung<br>
+- sehr vielen Sonnentagen im Jahr<br><br>
+<strong>Das Grundstück befindet sich:</strong><br>
+- ca. 3 km von der Stadt entfernt<br>
+- ca. 1 km von der Hauptstraße entfernt<br>
+- in der Nähe der Grenze zu Kroatien und der EU<br><br>
+<strong>Hauptvorteile:</strong><br>
+✅ Sehr saubere Luft (AQI ~38 – gute Luftqualität)<br>
+✅ Eine der sonnigsten Regionen des Balkans<br>
+✅ Großes Potenzial für Solarprojekte<br>
+✅ Ideal für Eco / Off-Grid Lifestyle<br>
+✅ Geeignet für Wochenendhaus, Landwirtschaft oder privaten Rückzugsort<br>
+✅ Ruhige Lage ohne Stadtlärm<br>
+✅ Gute Erreichbarkeit und Nähe zur Infrastruktur<br><br>
+Das Grundstück ist im Kataster eingetragen und verfügt über ordnungsgemäße Dokumentation.<br><br>
+<strong>Ideal für:</strong><br>
+- private Investoren<br>
+- Solarprojekte<br>
+- Wochenendgrundstück<br>
+- biologische Landwirtschaft<br>
+- Menschen, die ein ruhiges Leben in der Natur suchen<br><br>
+Seriöse Käufer können das Grundstück mit einer Anzahlung reservieren, während die administrativen Verfahren abgeschlossen werden.<br><br>
+Für weitere Informationen und individuelle Vereinbarungen senden Sie uns bitte eine private Nachricht.`,
+                features: ["Baugenehmigung vorhanden", "Strom- und Wasseranschluss am Grundstück",
+                    "Asphaltierte Zufahrtsstraße", "1/1 Eigentum (saubere Papiere)"]
+            },
+            {
+                id: 2,
+                title: "Grundstück 418",
+                location: "Bosanski Petrovac",
+                price: "60.000",
+                size: "1.800",
+                images: [
+                    "https://i.imgur.com/i5AtA0w.jpeg"
+                ],
+                description: `<strong>1.800 m² GROSSES GRUNDSTÜCK IN BOSANSKI PETROVAC</strong><br><br>
+Attraktives 1.800 m² großes Grundstück in Bosanski Petrovac. Die ruhige und doch touristisch attraktive Lage macht dieses Grundstück zu einer seltenen Gelegenheit.<br><br>
+Perfekt geeignet für den Bau eines Ferienhauses oder zur touristischen Vermietung. Die Umgebung bietet eine gute Infrastruktur und ist gleichzeitig ein Paradies für Naturliebhaber.<br><br>
+Google Maps: https://maps.app.goo.gl/gmYZeUyUfLJmxz4GA`,
+                features: ["Touristisch sehr attraktive Zone", "Ruhige Nachbarschaft", "Baugenehmigung möglich"]
+            },
+            {
+                id: 3,
+                title: "Grundstück 540",
+                location: "Bosanski Petrovac",
+                price: "12.000",
+                size: "1.402",
+                images: [
+                    "https://i.imgur.com/CESLe2H.jpeg"
+                ],
+                description: `<strong>1.402 m² SONNIGES GRUNDSTÜCK IN BOSANSKI PETROVAC</strong><br><br>
+Großzügiges 1.402 m² Grundstück in einer der sonnenreichsten Gegenden des Balkans. Das milde, fast dalmatinische Klima sorgt für viele Sonnentage – ideal für Weinbau, Landwirtschaft oder einfach für Ihr persönliches Urlaubsparadies.<br><br>
+Die Lage bietet eine gute Erreichbarkeit und dennoch absolute Ruhe. Stromanschluss ist in unmittelbarer Nähe vorhanden.<br><br>
+Google Maps: https://maps.app.goo.gl/jjWtPVZMnJww2mvj7`,
+                features: ["Viel Sonnenschein (Klima ähnlich wie Dalmatien)", "Gute Verkehrsanbindung", "Stromanschluss in der Nähe"]
+            },
+            {
+                id: 4,
+                title: "Grundstück 541",
+                location: "Bosanski Petrovac",
+                price: "12.000",
+                size: "1.402",
+                images: [
+                    "https://i.imgur.com/CESLe2H.jpeg"
+                ],
+                description: `<strong>1.402 m² BAUGRUNDSTÜCK MIT VIEL POTENZIAL</strong><br><br>
+Dieses 1.402 m² große Grundstück in Bosanski Petrovac besticht durch seine sonnige Lage und den fruchtbaren Boden. Dank des mediterranen Klimas eignet es sich hervorragend für landwirtschaftliche Projekte, als Investitionsfläche oder für den Bau eines Eigenheims.<br><br>
+Die ruhige Umgebung und die Nähe zur Natur machen es besonders attraktiv für alle, die dem Stadtleben entfliehen möchten.<br><br>
+Google Maps: https://maps.app.goo.gl/uqvMeEkFKVs2GKyf8`,
+                features: ["Fruchtbarer Boden", "Viel Sonnenschein", "Ruhige Lage"]
+            }
+        ];
 
         let currentGalleryImages = [];
         let currentImageIndex = 0;
 
         function navigateTo(viewId, propertyId = null) {
-            document.querySelectorAll('.view-section').forEach(section => {
-                section.classList.remove('active');
-            });
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
             document.getElementById('view-' + viewId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
             if (viewId === 'detail' && propertyId !== null) {
                 loadPropertyDetails(propertyId);
             }
@@ -1319,22 +1220,25 @@
             if (countEl) countEl.textContent = properties.length + ' Grundstücke verfügbar';
 
             properties.forEach(prop => {
+                const priceNum = parseNumber(prop.price);
+                const sizeNum = parseNumber(prop.size);
+                const mainImage = prop.images && prop.images.length > 0 ? prop.images[0] : '';
+
                 const card = document.createElement('div');
                 card.className = 'property-card';
                 card.onclick = () => navigateTo('detail', prop.id);
-                const mainImage = prop.images && prop.images.length > 0 ? prop.images[0] : '';
 
                 card.innerHTML = `
                     <div class="property-img-wrapper">
                         <img src="${mainImage}" alt="${prop.title}" class="property-img" loading="lazy">
                         <div class="property-img-overlay"></div>
-                        <div class="property-badge">${prop.price} €</div>
+                        <div class="property-badge">${priceNum.toLocaleString('de-DE')} €</div>
                     </div>
                     <div class="property-info">
                         <div class="property-location">📍 ${prop.location}</div>
                         <h3 class="property-title">${prop.title}</h3>
                         <div class="property-specs-row">
-                            <span>📏 ${Number(prop.size).toLocaleString('de-DE')} m²</span>
+                            <span>📏 ${sizeNum.toLocaleString('de-DE')} m²</span>
                             <span>🏷️ Bauland</span>
                         </div>
                         <button class="btn-outline">Details ansehen →</button>
@@ -1350,8 +1254,11 @@
 
             document.getElementById('detail-title').innerText = prop.title;
             document.getElementById('detail-location').innerText = prop.location;
-            document.getElementById('detail-price').innerText = Number(prop.price).toLocaleString('de-DE') + ' €';
-            document.getElementById('detail-size').innerText = Number(prop.size).toLocaleString('de-DE');
+
+            const priceNum = parseNumber(prop.price);
+            const sizeNum = parseNumber(prop.size);
+            document.getElementById('detail-price').innerText = priceNum.toLocaleString('de-DE') + ' €';
+            document.getElementById('detail-size').innerText = sizeNum.toLocaleString('de-DE');
             document.getElementById('detail-desc').innerHTML = prop.description;
             document.getElementById('form-subject').value = "Anfrage für: " + prop.title;
 
@@ -1366,9 +1273,9 @@
             const featuresList = document.getElementById('detail-features');
             featuresList.innerHTML = '';
             if (prop.features && prop.features.length) {
-                prop.features.forEach(feature => {
+                prop.features.forEach(f => {
                     const li = document.createElement('li');
-                    li.innerText = feature;
+                    li.innerText = f;
                     featuresList.appendChild(li);
                 });
             } else {
@@ -1378,42 +1285,34 @@
 
         function updateGalleryUI() {
             if (currentGalleryImages.length === 0) return;
-            const mainImageEl = document.getElementById('detail-main-image');
-            mainImageEl.classList.add('image-fade');
-            mainImageEl.src = currentGalleryImages[currentImageIndex];
-            mainImageEl.addEventListener('animationend', () => {
-                mainImageEl.classList.remove('image-fade');
-            }, { once: true });
+            const mainImg = document.getElementById('detail-main-image');
+            mainImg.classList.add('image-fade');
+            mainImg.src = currentGalleryImages[currentImageIndex];
+            mainImg.addEventListener('animationend', () => mainImg.classList.remove('image-fade'), { once: true });
 
-            const thumbnailsContainer = document.getElementById('detail-thumbnails');
-            thumbnailsContainer.innerHTML = '';
-            currentGalleryImages.forEach((imgSrc, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = imgSrc;
-                thumb.className = 'thumbnail' + (index === currentImageIndex ? ' active' : '');
-                thumb.onclick = (e) => {
-                    e.stopPropagation();
-                    currentImageIndex = index;
-                    updateGalleryUI();
-                };
-                thumbnailsContainer.appendChild(thumb);
+            const thumbs = document.getElementById('detail-thumbnails');
+            thumbs.innerHTML = '';
+            currentGalleryImages.forEach((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = 'thumbnail' + (idx === currentImageIndex ? ' active' : '');
+                img.onclick = (e) => { e.stopPropagation(); currentImageIndex = idx; updateGalleryUI(); };
+                thumbs.appendChild(img);
             });
         }
 
-        function changeImage(direction) {
+        function changeImage(dir) {
             if (currentGalleryImages.length <= 1) return;
-            currentImageIndex += direction;
+            currentImageIndex += dir;
             if (currentImageIndex < 0) currentImageIndex = currentGalleryImages.length - 1;
             else if (currentImageIndex >= currentGalleryImages.length) currentImageIndex = 0;
             updateGalleryUI();
         }
 
         function openLightbox() {
-            if (currentGalleryImages.length === 0) return;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = currentGalleryImages[currentImageIndex];
-            lightbox.classList.add('active');
+            if (!currentGalleryImages.length) return;
+            document.getElementById('lightbox-img').src = currentGalleryImages[currentImageIndex];
+            document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
@@ -1422,7 +1321,6 @@
             document.body.style.overflow = '';
         }
 
-        // Keyboard support for lightbox
         document.addEventListener('keydown', function(e) {
             if (document.getElementById('lightbox').classList.contains('active')) {
                 if (e.key === 'Escape') closeLightbox();
@@ -1431,15 +1329,13 @@
             }
         });
 
-        // ============ FORM HANDLER ============
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const form = e.target;
             const result = document.getElementById('form-result');
             const button = document.getElementById('form-submit-btn');
             const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
+            const json = JSON.stringify(Object.fromEntries(formData));
 
             button.innerText = "Wird gesendet...";
             button.disabled = true;
@@ -1448,38 +1344,33 @@
 
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: json
-            }).then(async (response) => {
-                let jsonResp = await response.json();
-                if (response.status == 200) {
+            })
+            .then(async (res) => {
+                const data = await res.json();
+                if (res.status === 200) {
                     result.innerHTML = "✅ Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
                     result.classList.add("success");
                     form.reset();
                 } else {
-                    console.log(response);
-                    result.innerHTML = jsonResp.message || "Fehler beim Senden.";
+                    result.innerHTML = data.message || "Fehler beim Senden.";
                     result.classList.add("error");
                 }
-            }).catch(error => {
-                console.log(error);
+            })
+            .catch(err => {
+                console.error(err);
                 result.innerHTML = "❌ Etwas ist schiefgelaufen! Bitte versuchen Sie es erneut.";
                 result.classList.add("error");
-            }).then(function() {
+            })
+            .finally(() => {
                 button.innerText = "Anfrage senden ✉";
                 button.disabled = false;
-                setTimeout(() => {
-                    result.style.display = "none";
-                }, 5000);
+                setTimeout(() => { result.style.display = "none"; }, 5000);
             });
         });
 
-        window.onload = () => {
-            renderListings();
-        };
+        window.onload = renderListings;
     </script>
 </body>
 </html>
